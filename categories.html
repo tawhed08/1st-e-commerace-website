@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Lumina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        .neon-text { text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
+                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
+            </h1>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 items-center">
+                <a href="index.html" class="hover:text-teal-400 transition">Shop</a>
+                <a href="categories.html" class="text-teal-400 font-bold">Categories</a>
+                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
+                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
+                <a href="about.html" class="hover:text-teal-400 transition">About</a>
+               <a href="/account.html" class="hover:text-teal-400 transition">Account</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+        
+        <!-- Categories Header Banner -->
+        <div class="glass-card p-8 rounded-3xl border border-white/10">
+            <span class="bg-teal-500/10 border border-teal-500/30 text-teal-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Catalog</span>
+            <h2 class="text-3xl md:text-4xl font-black text-white dark:text-white text-slate-900 mt-2">All Categories & Products</h2>
+            <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-1">Browse our complete collection of 300 specialized tech equipment items.</p>
+        </div>
+
+        <!-- Categories Product Cards Grid (Dynamically Populated with 300 items) -->
+        <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Products will be injected here automatically by JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 py-6 text-center text-slate-500 text-sm mt-auto transition-colors duration-300">
+        <p>&copy; 2026 Lumina. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Base category items template pool
+        const baseCategories = [
+            { cat: "Keyboards & Peripherals", title: "Neon Mechanical Keyboard", desc: "RGB backlighting with tactical hot-swappable switches.", price: "$89.99" },
+            { cat: "Gaming Hardware", title: "Apex Wireless Gaming Mouse", desc: "Ultra-low latency sensor with ergonomic glass grips.", price: "$59.99" },
+            { cat: "Workspace Gear", title: "Matrix Extra-Large Desk Mat", desc: "Water-resistant waterproof coating with anti-fray edges.", price: "$29.99" },
+            { cat: "Audio Tech", title: "Cyber Pulse Headset", desc: "Immersive surround sound with custom lighting strips.", price: "$99.99" },
+            { cat: "Accessories", title: "Glassmorphism USB-C Hub", desc: "Multiport adapter with 4K HDMI and fast power delivery.", price: "$45.99" }
+        ];
+
+        function renderCategories() {
+            const grid = document.getElementById('categories-grid');
+            if (!grid) return;
+
+            let htmlContent = '';
+
+            // Loop to generate exactly 300 items cleanly
+            for (let i = 0; i < 300; i++) {
+                let item = baseCategories[i % baseCategories.length];
+                let productNumber = i + 1;
+
+                htmlContent += `
+                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group border border-white/10 relative">
+                        <span class="absolute top-3 left-3 bg-teal-500/20 border border-teal-500/40 text-teal-400 text-xs font-bold px-2.5 py-1 rounded-lg z-10">${item.cat}</span>
+                        <div class="relative overflow-hidden aspect-video bg-slate-900">
+                            <img src="https://picsum.photos/seed/cat${productNumber}/800/600" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+                        </div>
+                        <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs text-slate-500 font-mono">ID #${productNumber}</span>
+                                <h3 class="font-bold text-white dark:text-white text-slate-900 text-lg mt-1">${item.title}</h3>
+                                <p class="text-sm text-slate-400 mt-1">${item.desc}</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                                <span class="text-teal-400 font-black text-xl">${item.price}</span>
+                                <button class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl transition shadow-[0_0_10px_rgba(45,212,191,0.3)]">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = htmlContent;
+        }
+
+        // Theme Toggle Script & Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlRoot = document.getElementById('html-root');
+
+            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlRoot.classList.remove('dark');
+            } else {
+                htmlRoot.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlRoot.classList.contains('dark')) {
+                    htmlRoot.classList.remove('dark');
+                    localStorage.setItem('lumina_theme', 'light');
+                } else {
+                    htmlRoot.classList.add('dark');
+                    localStorage.setItem('lumina_theme', 'dark');
+                }
+            });
+        });
+    </script>
+    
+    <!-- SHARED CART LOGIC -->
+    <script src="cart.js"></script>
+</body>
+</html>

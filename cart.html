@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Lumina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        .neon-text {
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
+                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
+            </h1>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600">
+                <a href="index.html" class="hover:text-teal-400 transition">Shop</a>
+                <a href="categories.html" class="hover:text-teal-400 transition">Categories</a>
+                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
+                <a href="about.html" class="hover:text-teal-400 transition">About</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Day / Dark Mode Toggle Button -->
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300" title="Toggle Day/Dark Mode">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <a href="login.html" class="text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 hover:text-teal-400 transition hidden sm:block">Log In</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-8">
+            <h2 class="text-3xl md:text-4xl font-black text-white dark:text-white text-slate-900">Your Shopping Cart</h2>
+            <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-1">Review your selected items before proceeding to checkout.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            <!-- Cart Items List Container -->
+            <div class="lg:col-span-2 space-y-4" id="full-cart-items-container">
+                <!-- Populated dynamically via cart.js or placeholder -->
+                <div class="glass-card p-8 rounded-2xl text-center text-slate-500">
+                    Your cart is currently empty. <a href="index.html" class="text-teal-400 font-semibold underline ml-1">Start shopping</a>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl space-y-6 sticky top-28">
+                <h3 class="text-xl font-black text-white dark:text-white text-slate-900 border-b border-white/10 dark:border-white/10 border-slate-200 pb-4">Order Summary</h3>
+                
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between text-slate-400 dark:text-slate-400 text-slate-600">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal" class="font-bold text-white dark:text-white text-slate-900">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400 dark:text-slate-400 text-slate-600">
+                        <span>Estimated Shipping</span>
+                        <span class="font-bold text-teal-400">Free</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400 dark:text-slate-400 text-slate-600">
+                        <span>Tax (Estimated)</span>
+                        <span id="summary-tax" class="font-bold text-white dark:text-white text-slate-900">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="border-t border-white/10 dark:border-white/10 border-slate-200 pt-4 flex justify-between items-center">
+                    <span class="font-bold text-white dark:text-white text-slate-900 text-base">Total</span>
+                    <span id="summary-total" class="font-black text-2xl text-teal-400">$0.00</span>
+                </div>
+
+                <a href="checkout.html" class="block w-full text-center bg-teal-500 text-slate-950 font-bold text-base py-4 rounded-xl hover:bg-teal-400 transition-colors shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+                    Proceed to Checkout
+                </a>
+                
+                <div class="text-center">
+                    <a href="index.html" class="text-xs font-semibold text-slate-400 dark:text-slate-400 text-slate-600 hover:text-teal-400 transition">Or Continue Shopping</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER WITH STANDARD COPYRIGHT -->
+    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 dark:border-slate-800 border-slate-200 py-6 text-center text-slate-500 dark:text-slate-500 text-slate-600 text-sm mt-auto transition-colors duration-300">
+        <p>&copy; 2026 Lumina. All rights reserved.</p>
+    </footer>
+
+    <!-- THEME TOGGLE SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlRoot = document.getElementById('html-root');
+
+            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlRoot.classList.remove('dark');
+            } else {
+                htmlRoot.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlRoot.classList.contains('dark')) {
+                    htmlRoot.classList.remove('dark');
+                    localStorage.setItem('lumina_theme', 'light');
+                } else {
+                    htmlRoot.classList.add('dark');
+                    localStorage.setItem('lumina_theme', 'dark');
+                }
+            });
+        });
+    </script>
+    
+    <!-- SHARED CART LOGIC -->
+    <script src="cart.js"></script>
+</body>
+</html>

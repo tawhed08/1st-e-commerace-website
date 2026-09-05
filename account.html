@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Lumina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <style>
+        .neon-text { text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300">
+
+    <!-- HEADER -->
+    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
+                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
+            </h1>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 items-center">
+                <a href="index.html" class="hover:text-teal-400 transition">Shop</a>
+                <a href="categories.html" class="hover:text-teal-400 transition">Categories</a>
+                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
+                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
+                <a href="account.html" class="text-teal-400 font-bold">Account</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full py-16 px-4 sm:px-6 lg:px-8 max-w-md mx-auto flex flex-col justify-center">
+        
+        <!-- Auth Card Container -->
+        <div class="glass-card p-8 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+            
+            <!-- Toggle Tabs Header -->
+            <div class="flex rounded-xl bg-slate-900/60 p-1 border border-white/10">
+                <button id="tab-login" onclick="switchTab('login')" class="flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-teal-400 bg-teal-500/10 shadow-sm">Log In</button>
+                <button id="tab-signup" onclick="switchTab('signup')" class="flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-slate-400 hover:text-white">Sign Up</button>
+            </div>
+
+            <!-- LOG IN FORM -->
+            <form id="form-login" class="space-y-4" onsubmit="handleAuth(event, 'login')">
+                <div>
+                    <h2 class="text-2xl font-black text-white dark:text-white text-slate-900">Welcome Back</h2>
+                    <p class="text-sm text-slate-400 mt-1">Enter your credentials to access your account.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Email Address</label>
+                        <input type="email" required class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 transition" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Password</label>
+                        <input type="password" required class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 transition" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+                    Log In
+                </button>
+            </form>
+
+            <!-- SIGN UP FORM (Hidden by default) -->
+            <form id="form-signup" class="space-y-4 hidden" onsubmit="handleAuth(event, 'signup')">
+                <div>
+                    <h2 class="text-2xl font-black text-white dark:text-white text-slate-900">Create Account</h2>
+                    <p class="text-sm text-slate-400 mt-1">Join Lumina to manage orders and track gear.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Full Name</label>
+                        <input type="text" required class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 transition" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Email Address</label>
+                        <input type="email" required class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 transition" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Password</label>
+                        <input type="password" required class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 transition" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-[0_0_15px_rgba(45,212,191,0.3)]">
+                    Create Account
+                </button>
+            </form>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 py-6 text-center text-slate-500 text-sm mt-auto transition-colors duration-300">
+        <p>&copy; 2026 Lumina. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Tab switching logic
+        function switchTab(tab) {
+            const loginForm = document.getElementById('form-login');
+            const signupForm = document.getElementById('form-signup');
+            const loginTab = document.getElementById('tab-login');
+            const signupTab = document.getElementById('tab-signup');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                
+                loginTab.className = "flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-teal-400 bg-teal-500/10 shadow-sm";
+                signupTab.className = "flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-slate-400 hover:text-white";
+            } else {
+                signupForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+                
+                signupTab.className = "flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-teal-400 bg-teal-500/10 shadow-sm";
+                loginTab.className = "flex-1 py-2.5 text-sm font-bold rounded-lg transition-all text-slate-400 hover:text-white";
+            }
+        }
+
+        // Mock authentication submit handler
+        function handleAuth(event, type) {
+            event.preventDefault();
+            if (type === 'login') {
+                alert("Successfully logged in!");
+            } else {
+                alert("Account created successfully!");
+            }
+            window.location.href = "index.html";
+        }
+
+        // Theme Toggle Script & Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlRoot = document.getElementById('html-root');
+
+            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlRoot.classList.remove('dark');
+            } else {
+                htmlRoot.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlRoot.classList.contains('dark')) {
+                    htmlRoot.classList.remove('dark');
+                    localStorage.setItem('lumina_theme', 'light');
+                } else {
+                    htmlRoot.classList.add('dark');
+                    localStorage.setItem('lumina_theme', 'dark');
+                }
+            });
+        });
+    </script>
+    <script src="cart.js"></script>
+</body>
+</html>

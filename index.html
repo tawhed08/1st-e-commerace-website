@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Lumina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        .neon-text {
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Light Mode Glass Adjustments */
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300" id="body-root">
+
+    <!-- HEADER -->
+    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
+                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
+            </h1>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600">
+                <a href="index.html" class="text-teal-400 font-bold">Shop</a>
+                <a href="categories.html" class="hover:text-teal-400 transition">Categories</a>
+                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
+                <a href="about.html" class="hover:text-teal-400 transition">About</a>
+                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Day / Dark Mode Toggle Button -->
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300" title="Toggle Day/Dark Mode">
+                    <!-- Sun Icon (Visible in Dark Mode) -->
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Moon Icon (Visible in Day Mode) -->
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+
+                <a href="/account.html" class="text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 hover:text-teal-400 transition hidden sm:block">Account</a>
+                
+                <button id="header-cart-btn" class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500/20 text-teal-400 px-5 py-2.5 rounded-xl flex items-center text-sm font-bold relative transition-all gap-2 shadow-[0_0_15px_rgba(45,212,191,0.15)] hover:shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    Cart
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-10 text-center">
+            <div class="inline-block bg-white/5 dark:bg-white/5 bg-slate-200 border border-white/10 dark:border-white/10 border-slate-300 text-slate-300 dark:text-slate-300 text-slate-700 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-3">
+                Featured Catalog
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-white dark:text-white text-slate-900">Explore Store</h2>
+            <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-2 max-w-xl mx-auto">High-performance gear and minimal tech accessories built for your daily workflow.</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Product 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
+                    <img src="https://picsum.photos/seed/prod1/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Neural Wireless Mouse</h3>
+                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Ergonomic ultra-low latency mouse with custom macro triggers.</p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between">
+                        <span class="text-teal-400 font-black text-xl">$79.99</span>
+                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
+                    <img src="https://picsum.photos/seed/prod2/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Apex Mechanical Keyboard</h3>
+                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Hot-swappable switches with per-key custom RGB lighting.</p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between">
+                        <span class="text-teal-400 font-black text-xl">$149.99</span>
+                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
+                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
+                    <img src="https://picsum.photos/seed/prod3/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+                </div>
+                <div class="p-6 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Quantum Desk Pad</h3>
+                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Water-resistant microfiber surface with non-slip natural rubber base.</p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between">
+                        <span class="text-teal-400 font-black text-xl">$39.99</span>
+                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER WITH STANDARD COPYRIGHT -->
+    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 dark:border-slate-800 border-slate-200 py-6 text-center text-slate-500 dark:text-slate-500 text-slate-600 text-sm mt-auto transition-colors duration-300">
+        <p>&copy; 2026 Lumina. All rights reserved BP IT TECH.</p>
+    </footer>
+
+    <!-- SLIDE-OUT CART DRAWER -->
+    <div id="cart-container" class="fixed inset-0 z-50 invisible">
+        <div id="cart-overlay" class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        <div id="cart-drawer" class="absolute top-0 right-0 h-full w-full max-w-md bg-slate-900 dark:bg-slate-900 bg-white border-l border-white/10 dark:border-white/10 border-slate-200 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-white/10 dark:border-white/10 border-slate-200 bg-slate-950 dark:bg-slate-950 bg-slate-50">
+                <h3 class="text-xl font-black text-white dark:text-white text-slate-900">Your Cart</h3>
+                <button id="close-cart-btn" class="p-2 text-slate-400 hover:text-teal-400 transition-colors rounded-full hover:bg-white/5">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6 text-slate-300 dark:text-slate-300 text-slate-700" id="cart-items-container">
+                <div class="text-center py-12 text-slate-500">Your cart is empty.</div>
+            </div>
+            
+            <div class="border-t border-white/10 dark:border-white/10 border-slate-200 p-6 bg-slate-950 dark:bg-slate-950 bg-slate-50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold text-slate-400">Subtotal</span>
+                    <span id="cart-subtotal" class="font-black text-xl text-white dark:text-white text-slate-900">$0.00</span>
+                </div>
+                <a href="checkout.html" class="block w-full text-center bg-teal-500 text-slate-900 font-bold text-lg py-4 rounded-xl hover:bg-teal-400 transition-colors shadow-[0_0_15px_rgba(45,212,191,0.4)]">
+                    Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI INTERACTION SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cart Elements
+            const cartContainer = document.getElementById('cart-container');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartDrawer = document.getElementById('cart-drawer');
+            const headerCartBtn = document.getElementById('header-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+
+            function openCart() {
+                cartContainer.classList.remove('invisible');
+                document.body.classList.add('overflow-hidden');
+                requestAnimationFrame(() => {
+                    cartOverlay.classList.remove('opacity-0');
+                    cartDrawer.classList.remove('translate-x-full');
+                });
+            }
+
+            function closeCart() {
+                cartOverlay.classList.add('opacity-0');
+                cartDrawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    cartContainer.classList.add('invisible');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            }
+
+            headerCartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlRoot = document.getElementById('html-root');
+
+            // Check saved theme or default to dark
+            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlRoot.classList.remove('dark');
+            } else {
+                htmlRoot.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlRoot.classList.contains('dark')) {
+                    htmlRoot.classList.remove('dark');
+                    localStorage.setItem('lumina_theme', 'light');
+                } else {
+                    htmlRoot.classList.add('dark');
+                    localStorage.setItem('lumina_theme', 'dark');
+                }
+            });
+        });
+    </script>
+    
+    <!-- SHARED CART LOGIC -->
+    <script src="cart.js"></script>
+</body>
+</html>

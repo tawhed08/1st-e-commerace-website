@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Minimalist Watch - Lumina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-slate-900 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <h1 class="text-2xl font-black tracking-tighter">
+                <a href="index.html">Lumina<span class="text-teal-500">.</span></a>
+            </h1>
+            
+            <button id="header-cart-btn" class="bg-slate-900 hover:bg-slate-800 transition-colors text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN PRODUCT PAGE -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+        <!-- Breadcrumbs -->
+        <nav class="text-sm text-slate-500 mb-8">
+            <a href="index.html" class="hover:text-slate-900">Home</a> / 
+            <a href="#" class="hover:text-slate-900">Accessories</a> / 
+            <span class="text-slate-900 font-semibold">Classic Minimalist Watch</span>
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            
+            <!-- Image Gallery -->
+            <div class="flex flex-col gap-4">
+                <div class="bg-gray-100 rounded-2xl overflow-hidden aspect-square border border-gray-200">
+                    <img id="main-image" src="https://picsum.photos/seed/watch1/800/800" class="w-full h-full object-cover">
+                </div>
+                <div class="grid grid-cols-4 gap-4" id="thumbnail-gallery">
+                    <button class="thumb-btn rounded-xl overflow-hidden border-2 border-teal-500 aspect-square">
+                        <img src="https://picsum.photos/seed/watch1/800/800" class="w-full h-full object-cover pointer-events-none">
+                    </button>
+                    <button class="thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-300 aspect-square transition-colors">
+                        <img src="https://picsum.photos/seed/watch2/800/800" class="w-full h-full object-cover pointer-events-none">
+                    </button>
+                    <button class="thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-300 aspect-square transition-colors">
+                        <img src="https://picsum.photos/seed/watch3/800/800" class="w-full h-full object-cover pointer-events-none">
+                    </button>
+                    <button class="thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-300 aspect-square transition-colors">
+                        <img src="https://picsum.photos/seed/watch4/800/800" class="w-full h-full object-cover pointer-events-none">
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="flex flex-col pt-4">
+                <h2 class="text-3xl md:text-4xl font-black mb-2">Classic Minimalist Watch</h2>
+                <p class="text-2xl font-bold text-teal-600 mb-6">$145.00</p>
+                
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    Crafted for the modern professional. This timepiece features a scratch-resistant sapphire crystal face, genuine Italian leather strap, and a precision quartz movement. Water-resistant up to 50 meters.
+                </p>
+
+                <!-- Size Selector -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-slate-900">Select Size</h3>
+                        <a href="#" class="text-sm text-slate-500 underline hover:text-teal-600">Size Guide</a>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-3" id="size-selector">
+                        <button class="size-btn py-3 border-2 border-slate-200 rounded-xl font-semibold text-slate-600 hover:border-slate-900 transition-colors">38mm</button>
+                        <button class="size-btn py-3 border-2 border-slate-900 bg-slate-50 rounded-xl font-semibold text-slate-900 transition-colors selected">40mm</button>
+                        <button class="size-btn py-3 border-2 border-slate-200 rounded-xl font-semibold text-slate-600 hover:border-slate-900 transition-colors">42mm</button>
+                    </div>
+                </div>
+                
+                <button id="add-to-cart-btn" class="w-full bg-slate-900 text-white font-bold text-lg py-4 rounded-xl hover:bg-teal-500 transition-colors duration-300">
+                    Add to Cart
+                </button>
+
+                <!-- Badges -->
+                <div class="mt-8 grid grid-cols-2 gap-4 text-sm text-slate-600 font-medium">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Free Worldwide Shipping
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        2-Year Warranty
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SLIDE-OUT CART DRAWER -->
+    <div id="cart-container" class="fixed inset-0 z-50 invisible">
+        <div id="cart-overlay" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="cart-drawer" class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+                <h3 class="text-xl font-black">Your Cart</h3>
+                <button id="close-cart-btn" class="p-2 text-slate-400 hover:text-slate-900 transition-colors rounded-full hover:bg-slate-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6" id="cart-items-container">
+                <div id="empty-cart-msg" class="text-center py-12 text-slate-500">Your cart is empty.</div>
+            </div>
+
+            <div class="border-t border-gray-100 p-6 bg-gray-50">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-slate-500 font-semibold">Subtotal</span>
+                    <span class="text-2xl font-black" id="cart-subtotal">$0.00</span>
+                </div>
+                <p class="text-xs text-slate-500 text-center mb-4">Shipping and taxes calculated at checkout.</p>
+                <button class="w-full bg-teal-500 text-slate-900 font-bold text-lg py-4 rounded-xl hover:bg-teal-400 transition-colors">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gallery
+            const mainImage = document.getElementById('main-image');
+            const thumbnails = document.querySelectorAll('.thumb-btn');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    mainImage.src = this.querySelector('img').src;
+                    thumbnails.forEach(t => {
+                        t.classList.remove('border-teal-500');
+                        t.classList.add('border-transparent');
+                    });
+                    this.classList.remove('border-transparent');
+                    this.classList.add('border-teal-500');
+                });
+            });
+
+            // Size Selector
+            const sizeBtns = document.querySelectorAll('.size-btn');
+            let selectedSize = '40mm';
+
+            sizeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    sizeBtns.forEach(b => {
+                        b.classList.remove('border-slate-900', 'bg-slate-50', 'text-slate-900', 'selected');
+                        b.classList.add('border-slate-200', 'text-slate-600');
+                    });
+                    this.classList.remove('border-slate-200', 'text-slate-600');
+                    this.classList.add('border-slate-900', 'bg-slate-50', 'text-slate-900', 'selected');
+                    selectedSize = this.textContent;
+                });
+            });
+
+            // Cart Drawer Logic
+            const cartContainer = document.getElementById('cart-container');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartDrawer = document.getElementById('cart-drawer');
+            
+            const headerCartBtn = document.getElementById('header-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const emptyCartMsg = document.getElementById('empty-cart-msg');
+            const cartCountEl = document.getElementById('cart-count');
+            const cartSubtotalEl = document.getElementById('cart-subtotal');
+
+            let cartCount = 0;
+
+            function openCart() {
+                cartContainer.classList.remove('invisible');
+                document.body.classList.add('overflow-hidden');
+                requestAnimationFrame(() => {
+                    cartOverlay.classList.remove('opacity-0');
+                    cartDrawer.classList.remove('translate-x-full');
+                });
+            }
+
+            function closeCart() {
+                cartOverlay.classList.add('opacity-0');
+                cartDrawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    cartContainer.classList.add('invisible');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            }
+
+            headerCartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+
+            addToCartBtn.addEventListener('click', () => {
+                cartCount++;
+                cartCountEl.textContent = cartCount;
+                cartSubtotalEl.textContent = `$${(cartCount * 145).toFixed(2)}`;
+                emptyCartMsg.style.display = 'none';
+
+                const cartItemHTML = `
+                    <div class="flex gap-4 items-center">
+                        <img src="${mainImage.src}" class="w-20 h-20 rounded-xl bg-gray-100 object-cover">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-slate-900 leading-tight mb-1">Classic Minimalist Watch</h4>
+                            <p class="text-sm text-slate-500">Size: ${selectedSize}</p>
+                            <p class="font-bold text-teal-600 mt-1">$145.00</p>
+                        </div>
+                        <button class="text-slate-400 hover:text-red-500 transition-colors p-2 text-sm font-bold">Remove</button>
+                    </div>
+                `;
+
+                cartItemsContainer.insertAdjacentHTML('beforeend', cartItemHTML);
+                openCart();
+            });
+        });
+    </script>
+</body>
+</html>
