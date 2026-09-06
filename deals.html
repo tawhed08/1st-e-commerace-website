@@ -1,193 +1,200 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deals & Flash Sales - Lumina</title>
+    <title>Lumina - Deals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
-    <style>
-        .neon-text { text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4); }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300">
-
-    <!-- HEADER -->
-    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
-                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
-            </h1>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 items-center">
-                <a href="index.html" class="hover:text-teal-400 transition">Shop</a>
-                <a href="categories.html" class="hover:text-teal-400 transition">Categories</a>
-                <a href="deals.html" class="text-teal-400 font-bold">Deals</a>
-                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
-                <a href="about.html" class="hover:text-teal-400 transition">About</a>
-                <a href="/account.html" class="hover:text-teal-400 transition">Account</a>
-            </nav>
-
-            <div class="flex items-center space-x-3">
-                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
-        
-        <!-- Deals Header Banner & Flash Offer Countdown -->
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 glass-card p-8 rounded-3xl border border-white/10">
-            <div>
-                <span class="bg-teal-500/10 border border-teal-500/30 text-teal-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Limited Time Offers</span>
-                <h2 class="text-3xl md:text-4xl font-black text-white dark:text-white text-slate-900 mt-2">Flash Deals & Discounts</h2>
-                <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-1">Explore all 200 high-performance gear items at unbeatable neon-slashing prices.</p>
-            </div>
-
-            <!-- Flash Offer Countdown Timer Box -->
-            <div class="bg-slate-900/80 border border-teal-500/30 p-4 rounded-2xl flex items-center space-x-4 shadow-[0_0_15px_rgba(45,212,191,0.1)]">
-                <div class="text-teal-400">
-                    <svg class="w-8 h-8 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <div>
-                    <p class="text-xs uppercase tracking-wider text-slate-400 font-bold">Offer Ends In:</p>
-                    <div id="deal-countdown" class="text-xl font-mono font-black text-teal-400">05:12:45:09</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Deal Product Cards Grid (Dynamically Populated with 200 items) -->
-        <div id="deals-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Products will be injected here automatically by JavaScript -->
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 py-6 text-center text-slate-500 text-sm mt-auto transition-colors duration-300">
-        <p>&copy; 2026 Lumina. All rights reserved.</p>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <script>
-        // Deal Offer Countdown Timer Script (24-hour flash countdown)
-        const countdownTime = new Date().getTime() + (24 * 60 * 60 * 1000); 
-
-        function updateDealCountdown() {
-            const now = new Date().getTime();
-            const distance = countdownTime - now;
-
-            if (distance < 0) {
-                document.getElementById('deal-countdown').innerText = "OFFER EXPIRED";
-                return;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0b0f19',
+                        surface: '#131b2e',
+                        outline: '#1f293d',
+                        neon: '#5eead4',
+                        neonHover: '#2dd4bf',
+                        primaryBtn: '#0d9488',
+                        primaryBtnHover: '#14b8a6',
+                        deal: '#ef4444' 
+                    },
+                    fontFamily: { sans: ['system-ui', '-apple-system', 'sans-serif'] }
+                }
             }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('deal-countdown').innerText = 
-                String(hours).padStart(2, '0') + "h : " + 
-                String(minutes).padStart(2, '0') + "m : " + 
-                String(seconds).padStart(2, '0') + "s";
         }
+    </script>
+</head>
+<body class="bg-base text-white pb-28">
 
-        setInterval(updateDealCountdown, 1000);
-        updateDealCountdown();
+    <nav class="flex justify-between items-center px-6 md:px-10 py-5 bg-base border-b border-outline sticky top-0 z-50">
+        <a href="#" class="text-2xl font-black text-white no-underline tracking-wide">
+            Lumina<span class="text-neon">.</span>
+        </a>
+        
+        <div class="hidden md:flex gap-6 items-center">
+            <a href="/index.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Shop</a>
+            <a href="/categories.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Categories</a>
+            <a href="/deals.html" class="text-neon text-sm font-medium transition-colors">Deals</a>
+            <a href="/about.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">About</a>
+            <a href="/orders.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Orders</a>
+        </div>
 
-        // 200 Products Generator Script
-        const baseProducts = [
-            { title: "Cyber RGB Mechanical Keyboard", desc: "Hot-swappable switches with custom neon backlighting.", oldPrice: "$129.99", price: "$89.99", discount: "-30% OFF" },
-            { title: "Apex Wireless Gaming Mouse", desc: "Ultra-low latency sensor with ergonomic glass grips.", oldPrice: "$79.99", price: "$59.99", discount: "-25% OFF" },
-            { title: "Matrix Extra-Large Desk Mat", desc: "Water-resistant waterproof coating with anti-fray edges.", oldPrice: "$49.99", price: "$29.99", discount: "-40% OFF" },
-            { title: "Neon Pulse Gaming Headset", desc: "Immersive 7.1 surround sound with adjustable RGB strips.", oldPrice: "$149.99", price: "$99.99", discount: "-35% OFF" },
-            { title: "Glassmorphism USB-C Hub", desc: "Multiport adapter with 4K HDMI and fast power delivery.", oldPrice: "$69.99", price: "$45.99", discount: "-20% OFF" }
-        ];
+        <div class="flex gap-3 items-center ml-5">
+            <a href="/account.html " class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/cart.html" class="relative flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-neon text-base w-5 h-5 rounded-full text-xs font-extrabold flex items-center justify-center border-2 border-base">0</span>
+            </a>
+            <!-- <a href="/settings.html" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65  
+            </a> -->
+        </div>
+    </nav>
 
-        function renderDeals() {
-            const grid = document.getElementById('deals-grid');
-            if (!grid) return;
+    <div class="max-w-6xl mx-auto mt-8 px-5">
+        <div class="bg-surface/50 border border-deal/30 rounded-2xl p-6 mb-8 flex items-center justify-between shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-black text-white flex items-center gap-3">
+                    <svg class="text-deal w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Flash Deals
+                </h1>
+                <p class="text-gray-400 mt-2">Limited time offers on top-tier gear. Grab them before they're gone!</p>
+            </div>
+            <div class="hidden md:block text-right">
+                <p class="text-sm text-gray-400 uppercase tracking-widest font-bold">Ends In</p>
+                <p class="text-2xl font-mono text-deal font-bold tracking-tight">04:15:29</p>
+            </div>
+        </div>
+    </div>
 
-            let htmlContent = '';
+    <div class="max-w-6xl mx-auto px-5 mb-10">
+        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </div>
 
-            // Loop to generate exactly 200 products cleanly
-            for (let i = 0; i < 200; i++) {
-                let item = baseProducts[i % baseProducts.length];
-                let productNumber = i + 1;
+    <div id="cartBar" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-outline px-8 py-4 hidden justify-between items-center shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-50">
+        <div class="text-lg font-medium text-gray-100">
+            Cart Items: <span id="cartCount">0</span> | Total: <span id="cartTotal" class="text-neon font-bold">$0.00</span>
+        </div>
+        <button class="bg-neon hover:bg-neonHover text-base text-base border-none py-3 px-7 rounded-lg font-bold cursor-pointer transition-colors" onclick="alert('Proceeding to checkout!')">Proceed to Checkout</button>
+    </div>
 
-                htmlContent += `
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group border border-white/10 relative">
-                        <span class="absolute top-3 left-3 bg-rose-500 text-white text-xs font-black px-2.5 py-1 rounded-lg z-10 shadow-md">${item.discount}</span>
-                        <div class="relative overflow-hidden aspect-video bg-slate-900">
-                            <img src="https://picsum.photos/seed/deal${productNumber}/800/600" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+    <script>
+        // Wrap everything in DOMContentLoaded to ensure HTML loads before JS runs
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const productData = {
+                'Mechanical Keyboard': { cat: 'Keyboards & Peripherals', img: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80' },
+                'Wireless Mouse': { cat: 'Gaming Hardware', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80' },
+                'Studio Headset': { cat: 'Audio Gear', img: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=600&q=80' },
+                'Condenser Mic': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80' },
+                'Gaming Monitor': { cat: 'Displays', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80' },
+                'Pro Webcam': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441?auto=format&fit=crop&w=600&q=80' }
+            };
+
+            const adjectives = ['Neon', 'Apex', 'Cyber', 'Quantum', 'Stealth', 'Nova', 'Pulse'];
+            const types = Object.keys(productData);
+
+            const allProducts = Array.from({ length: 20 }, (_, i) => {
+                const type = types[Math.floor(Math.random() * types.length)];
+                const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+                const mappedInfo = productData[type];
+                
+                const originalPrice = (Math.random() * 150 + 50);
+                const discountPercent = Math.floor(Math.random() * 40) + 15; 
+                const discountedPrice = originalPrice - (originalPrice * (discountPercent / 100));
+                
+                return {
+                    id: i + 1,
+                    name: `${adj} ${type} v${(i % 5) + 1}`,
+                    category: mappedInfo.cat,
+                    originalPrice: originalPrice.toFixed(2),
+                    price: discountedPrice.toFixed(2),
+                    discount: discountPercent,
+                    image: mappedInfo.img,
+                    description: `High-performance ${type.toLowerCase()} engineered for ultimate responsiveness.`
+                };
+            });
+
+            const productsGrid = document.getElementById('productsGrid');
+
+            function renderProducts(productsToDisplay) {
+                if (!productsGrid) return; 
+
+                if (productsToDisplay.length === 0) {
+                    productsGrid.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10 text-xl">No products found.</div>`;
+                    return;
+                }
+
+                productsGrid.innerHTML = productsToDisplay.map(product => `
+                    <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg hover:-translate-y-1 transition-transform duration-200">
+                        <div class="relative w-full h-48">
+                            <span class="absolute top-4 left-4 bg-neon/20 text-neon px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border border-neon/30 z-10">${product.category}</span>
+                            <span class="absolute top-4 right-4 bg-deal text-white px-3 py-1 rounded-full text-xs font-bold shadow-md z-10">-${product.discount}%</span>
+                            <img class="w-full h-full object-cover" src="${product.image}" alt="${product.name}">
                         </div>
-                        <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
-                            <div>
-                                <span class="text-xs text-teal-400 font-mono">ITEM #${productNumber}</span>
-                                <h3 class="font-bold text-white dark:text-white text-slate-900 text-lg mt-1">${item.title}</h3>
-                                <p class="text-sm text-slate-400 mt-1">${item.desc}</p>
+                        <div class="p-5 flex flex-col gap-1">
+                            <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">ID #${product.id}</span>
+                            <h3 class="text-lg font-bold text-white leading-tight">${product.name}</h3>
+                            <p class="text-gray-400 text-sm mt-1">${product.description}</p>
+                        </div>
+                        <div class="flex justify-between items-end p-5 pt-0">
+                            <div class="flex flex-col">
+                                <span class="text-sm text-gray-500 line-through">$${product.originalPrice}</span>
+                                <span class="text-2xl font-bold text-neon">$${product.price}</span>
                             </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                                <div>
-                                    <span class="text-slate-500 line-through text-sm">${item.oldPrice}</span>
-                                    <span class="text-teal-400 font-black text-xl ml-2">${item.price}</span>
-                                </div>
-                                <button class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl transition shadow-[0_0_10px_rgba(45,212,191,0.3)]">
-                                    Add to Cart
-                                </button>
-                            </div>
+                            <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold cursor-pointer transition-colors" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
                         </div>
                     </div>
-                `;
+                `).join('');
             }
 
-            grid.innerHTML = htmlContent;
-        }
+            renderProducts(allProducts);
 
-        // Theme Toggle Script & Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            renderDeals();
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartUI();
 
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const htmlRoot = document.getElementById('html-root');
+            document.addEventListener('click', function(event) {
+                const button = event.target.closest('.add-to-cart-btn');
+                if (!button) return;
 
-            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
-            if (savedTheme === 'light') {
-                htmlRoot.classList.remove('dark');
-            } else {
-                htmlRoot.classList.add('dark');
-            }
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
 
-            themeToggleBtn.addEventListener('click', () => {
-                if (htmlRoot.classList.contains('dark')) {
-                    htmlRoot.classList.remove('dark');
-                    localStorage.setItem('lumina_theme', 'light');
-                } else {
-                    htmlRoot.classList.add('dark');
-                    localStorage.setItem('lumina_theme', 'dark');
-                }
+                cart.push({ id, name, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartUI();
             });
+
+            function updateCartUI() {
+                const totalItems = cart.length;
+                const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
+                const navCount = document.getElementById('navCartCount');
+                if (navCount) navCount.textContent = totalItems;
+
+                const cartBar = document.getElementById('cartBar');
+                const countSpan = document.getElementById('cartCount');
+                const totalSpan = document.getElementById('cartTotal');
+                
+                if (countSpan) countSpan.textContent = totalItems;
+                if (totalSpan) totalSpan.textContent = `$${totalPrice.toFixed(2)}`;
+
+                if (cartBar) {
+                    if (totalItems > 0) {
+                        cartBar.classList.remove('hidden');
+                        cartBar.classList.add('flex');
+                    } else {
+                        cartBar.classList.add('hidden');
+                        cartBar.classList.remove('flex');
+                    }
+                }
+            }
         });
     </script>
-    
-    <!-- SHARED CART LOGIC -->
-    <script src="cart.js"></script>
 </body>
 </html>

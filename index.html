@@ -1,235 +1,271 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Lumina</title>
+    <title>Lumina - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0b0f19',
+                        surface: '#131b2e',
+                        outline: '#1f293d',
+                        neon: '#5eead4',
+                        neonHover: '#2dd4bf',
+                        primaryBtn: '#0d9488',
+                        primaryBtnHover: '#14b8a6',
+                        deal: '#ef4444'
+                    },
+                    fontFamily: { sans: ['system-ui', '-apple-system', 'sans-serif'] }
+                }
+            }
         }
     </script>
-    <style>
-        .neon-text {
-            text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .dark .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        /* Light Mode Glass Adjustments */
-        html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-    </style>
 </head>
-<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300" id="body-root">
+<body class="bg-base text-white flex flex-col min-h-screen pb-28">
 
-    <!-- HEADER -->
-    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
-                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
-            </h1>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600">
-                <a href="index.html" class="text-teal-400 font-bold">Shop</a>
-                <a href="categories.html" class="hover:text-teal-400 transition">Categories</a>
-                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
-                <a href="about.html" class="hover:text-teal-400 transition">About</a>
-                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
-            </nav>
+    <nav class="flex justify-between items-center px-6 md:px-10 py-5 bg-base border-b border-outline sticky top-0 z-50">
+        <a href="index.html" class="text-2xl font-black text-white no-underline tracking-wide">
+            Lumina<span class="text-neon">.</span>
+        </a>
+        
+        <div class="hidden md:flex gap-6 items-center">
+            <a href="/index.html" class="text-neon text-sm font-medium transition-colors">Shop</a>
+            <a href="/categories.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Categories</a>
+            <a href="/deals.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Deals</a>
+            <a href="/about.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">About</a>
+            <a href="/contact.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Contact</a>
+             <a href="/orders.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Orders</a>
+        </div>
 
-            <div class="flex items-center space-x-3">
-                <!-- Day / Dark Mode Toggle Button -->
-                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300" title="Toggle Day/Dark Mode">
-                    <!-- Sun Icon (Visible in Dark Mode) -->
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <!-- Moon Icon (Visible in Day Mode) -->
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
+        <div class="flex gap-3 items-center ml-5">
+            <a href="/account.html" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/orders.html" class="relative flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-neon text-base w-5 h-5 rounded-full text-xs font-extrabold flex items-center justify-center border-2 border-base">0</span>
+            </a>
+            <!-- <a href="#settings" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l-.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </a> -->
+        </div>
+    </nav>
 
-                <a href="/account.html" class="text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 hover:text-teal-400 transition hidden sm:block">Account</a>
-                
-                <button id="header-cart-btn" class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500/20 text-teal-400 px-5 py-2.5 rounded-xl flex items-center text-sm font-bold relative transition-all gap-2 shadow-[0_0_15px_rgba(45,212,191,0.15)] hover:shadow-[0_0_20px_rgba(45,212,191,0.3)]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                    Cart
-                </button>
-            </div>
+    <header class="max-w-6xl mx-auto mt-12 px-5 text-center">
+        <span class="inline-block bg-neon/10 text-neon border border-neon/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+            Next-Gen Hardware & Peripherals
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto">
+            Level Up Your Play With Elite Gear From <span class="text-neon">Lumina</span>
+        </h1>
+        <p class="text-gray-400 text-base md:text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+            Discover ultra-responsive mechanical keyboards, lightning-fast wireless mice, and studio-grade audio equipment built specifically for competitive gamers and creators.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm text-gray-300">
+            <div class="flex items-center gap-2"><span class="text-neon">✔</span> Free Express Shipping</div>
+            <div class="flex items-center gap-2"><span class="text-neon">✔</span> 2-Year Hardware Warranty</div>
+            <div class="flex items-center gap-2"><span class="text-neon">✔</span> 24/7 Gamer Support</div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="mb-10 text-center">
-            <div class="inline-block bg-white/5 dark:bg-white/5 bg-slate-200 border border-white/10 dark:border-white/10 border-slate-300 text-slate-300 dark:text-slate-300 text-slate-700 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-3">
-                Featured Catalog
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black text-white dark:text-white text-slate-900">Explore Store</h2>
-            <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-2 max-w-xl mx-auto">High-performance gear and minimal tech accessories built for your daily workflow.</p>
-        </div>
+    <main class="max-w-6xl mx-auto mt-16 px-5 flex-grow space-y-20">
 
-        <!-- Products Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Product 1 -->
-            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
-                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
-                    <img src="https://picsum.photos/seed/prod1/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
+        <section>
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <span class="text-deal text-xs font-bold uppercase tracking-widest">Hot Discounts</span>
+                    <h2 class="text-2xl md:text-3xl font-black text-white mt-1">Featured Deals</h2>
                 </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Neural Wireless Mouse</h3>
-                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Ergonomic ultra-low latency mouse with custom macro triggers.</p>
-                    </div>
-                    <div class="mt-6 flex items-center justify-between">
-                        <span class="text-teal-400 font-black text-xl">$79.99</span>
-                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
-                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
-                    <img src="https://picsum.photos/seed/prod2/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Apex Mechanical Keyboard</h3>
-                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Hot-swappable switches with per-key custom RGB lighting.</p>
-                    </div>
-                    <div class="mt-6 flex items-center justify-between">
-                        <span class="text-teal-400 font-black text-xl">$149.99</span>
-                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="glass-card rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col">
-                <div class="relative h-64 overflow-hidden bg-slate-900 dark:bg-slate-900 bg-slate-200">
-                    <img src="https://picsum.photos/seed/prod3/800/800" alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80">
-                </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white dark:text-white text-slate-900 group-hover:text-teal-400 transition-colors">Quantum Desk Pad</h3>
-                        <p class="text-slate-400 dark:text-slate-400 text-slate-600 text-sm mt-1">Water-resistant microfiber surface with non-slip natural rubber base.</p>
-                    </div>
-                    <div class="mt-6 flex items-center justify-between">
-                        <span class="text-teal-400 font-black text-xl">$39.99</span>
-                        <button class="bg-teal-500/10 border border-teal-500/30 hover:bg-teal-500 text-teal-400 hover:text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition-all shadow-[0_0_10px_rgba(45,212,191,0.1)]">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- FOOTER WITH STANDARD COPYRIGHT -->
-    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 dark:border-slate-800 border-slate-200 py-6 text-center text-slate-500 dark:text-slate-500 text-slate-600 text-sm mt-auto transition-colors duration-300">
-        <p>&copy; 2026 Lumina. All rights reserved BP IT TECH.</p>
-    </footer>
-
-    <!-- SLIDE-OUT CART DRAWER -->
-    <div id="cart-container" class="fixed inset-0 z-50 invisible">
-        <div id="cart-overlay" class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
-        <div id="cart-drawer" class="absolute top-0 right-0 h-full w-full max-w-md bg-slate-900 dark:bg-slate-900 bg-white border-l border-white/10 dark:border-white/10 border-slate-200 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-            <div class="flex items-center justify-between px-6 py-5 border-b border-white/10 dark:border-white/10 border-slate-200 bg-slate-950 dark:bg-slate-950 bg-slate-50">
-                <h3 class="text-xl font-black text-white dark:text-white text-slate-900">Your Cart</h3>
-                <button id="close-cart-btn" class="p-2 text-slate-400 hover:text-teal-400 transition-colors rounded-full hover:bg-white/5">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            
-            <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6 text-slate-300 dark:text-slate-300 text-slate-700" id="cart-items-container">
-                <div class="text-center py-12 text-slate-500">Your cart is empty.</div>
-            </div>
-            
-            <div class="border-t border-white/10 dark:border-white/10 border-slate-200 p-6 bg-slate-950 dark:bg-slate-950 bg-slate-50">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="font-semibold text-slate-400">Subtotal</span>
-                    <span id="cart-subtotal" class="font-black text-xl text-white dark:text-white text-slate-900">$0.00</span>
-                </div>
-                <a href="checkout.html" class="block w-full text-center bg-teal-500 text-slate-900 font-bold text-lg py-4 rounded-xl hover:bg-teal-400 transition-colors shadow-[0_0_15px_rgba(45,212,191,0.4)]">
-                    Checkout
+                <a href="deals.html" class="flex items-center gap-2 text-neon hover:text-neonHover font-semibold text-sm transition-colors group">
+                    View More 
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                    <div class="relative w-full h-48">
+                        <span class="absolute top-4 right-4 bg-deal text-white px-3 py-1 rounded-full text-xs font-bold z-10">-30%</span>
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80" alt="Keyboard">
+                    </div>
+                    <div class="p-5">
+                        <span class="text-gray-500 text-xs font-semibold">Keyboards & Peripherals</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Quantum Mechanical Keyboard v1</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">$149.99</span>
+                                <span class="text-xl font-bold text-neon block">$104.99</span>
+                            </div>
+                            <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold transition-colors cursor-pointer" data-id="101" data-name="Quantum Mechanical Keyboard v1" data-price="104.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                    <div class="relative w-full h-48">
+                        <span class="absolute top-4 right-4 bg-deal text-white px-3 py-1 rounded-full text-xs font-bold z-10">-25%</span>
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80" alt="Mouse">
+                    </div>
+                    <div class="p-5">
+                        <span class="text-gray-500 text-xs font-semibold">Gaming Hardware</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Stealth Wireless Mouse v2</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">$89.99</span>
+                                <span class="text-xl font-bold text-neon block">$67.49</span>
+                            </div>
+                            <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold transition-colors cursor-pointer" data-id="102" data-name="Stealth Wireless Mouse v2" data-price="67.49">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg">
+                    <div class="relative w-full h-48">
+                        <span class="absolute top-4 right-4 bg-deal text-white px-3 py-1 rounded-full text-xs font-bold z-10">-40%</span>
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=600&q=80" alt="Headset">
+                    </div>
+                    <div class="p-5">
+                        <span class="text-gray-500 text-xs font-semibold">Audio Gear</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Pulse Studio Headset v3</h3>
+                        <div class="flex justify-between items-center mt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">$199.99</span>
+                                <span class="text-xl font-bold text-neon block">$119.99</span>
+                            </div>
+                            <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold transition-colors cursor-pointer" data-id="103" data-name="Pulse Studio Headset v3" data-price="119.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="deals.html" class="inline-block p-[2px] rounded-xl bg-gradient-to-r from-neon via-teal-400 to-neonHover shadow-[0_0_15px_rgba(94,234,212,0.15)] group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(94,234,212,0.4)]">
+                    <span class="flex items-center justify-center gap-2 bg-surface px-7 py-3 rounded-[10px] font-bold text-sm text-white transition-colors group-hover:bg-opacity-90">
+                        View All Deals 
+                        <svg class="w-4 h-4 text-neon group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="mb-8">
+                <span class="text-neon text-xs font-bold uppercase tracking-widest">Catalog</span>
+                <h2 class="text-2xl md:text-3xl font-black text-white mt-1">Main Products</h2>
+            </div>
+
+            <div id="mainProductsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </section>
+
+    </main>
+
+    <div id="cartBar" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-outline px-8 py-4 hidden justify-between items-center shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-50">
+        <div class="text-lg font-medium text-gray-100">
+            Cart Items: <span id="cartCount">0</span> | Total: <span id="cartTotal" class="text-neon font-bold">$0.00</span>
         </div>
+        <a href="order.html" class="bg-neon hover:bg-neonHover text-base text-base border-none py-3 px-7 rounded-lg font-bold cursor-pointer transition-colors no-underline">Proceed to Checkout</a>
     </div>
 
-    <!-- UI INTERACTION SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Cart Elements
-            const cartContainer = document.getElementById('cart-container');
-            const cartOverlay = document.getElementById('cart-overlay');
-            const cartDrawer = document.getElementById('cart-drawer');
-            const headerCartBtn = document.getElementById('header-cart-btn');
-            const closeCartBtn = document.getElementById('close-cart-btn');
+            const catalogData = {
+                'Mechanical Keyboard': { cat: 'Keyboards & Peripherals', img: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80' },
+                'Wireless Mouse': { cat: 'Gaming Hardware', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80' },
+                'Studio Headset': { cat: 'Audio Gear', img: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=600&q=80' },
+                'Condenser Mic': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80' },
+                'Gaming Monitor': { cat: 'Displays', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80' },
+                'Pro Webcam': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441?auto=format&fit=crop&w=600&q=80' }
+            };
 
-            function openCart() {
-                cartContainer.classList.remove('invisible');
-                document.body.classList.add('overflow-hidden');
-                requestAnimationFrame(() => {
-                    cartOverlay.classList.remove('opacity-0');
-                    cartDrawer.classList.remove('translate-x-full');
-                });
-            }
+            const adjectives = ['Zenith', 'Apex', 'Vanguard', 'Hyper', 'Cyber', 'Neon', 'Titan', 'Prime'];
+            const itemTypes = Object.keys(catalogData);
 
-            function closeCart() {
-                cartOverlay.classList.add('opacity-0');
-                cartDrawer.classList.add('translate-x-full');
-                setTimeout(() => {
-                    cartContainer.classList.add('invisible');
-                    document.body.classList.remove('overflow-hidden');
-                }, 300);
-            }
+            const normalProducts = Array.from({ length: 20 }, (_, i) => {
+                const type = itemTypes[Math.floor(Math.random() * itemTypes.length)];
+                const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+                const info = catalogData[type];
+                const regularPrice = (Math.random() * 200 + 40).toFixed(2);
 
-            headerCartBtn.addEventListener('click', openCart);
-            closeCartBtn.addEventListener('click', closeCart);
-            cartOverlay.addEventListener('click', closeCart);
-
-            // Theme Toggle Logic
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const htmlRoot = document.getElementById('html-root');
-
-            // Check saved theme or default to dark
-            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
-            if (savedTheme === 'light') {
-                htmlRoot.classList.remove('dark');
-            } else {
-                htmlRoot.classList.add('dark');
-            }
-
-            themeToggleBtn.addEventListener('click', () => {
-                if (htmlRoot.classList.contains('dark')) {
-                    htmlRoot.classList.remove('dark');
-                    localStorage.setItem('lumina_theme', 'light');
-                } else {
-                    htmlRoot.classList.add('dark');
-                    localStorage.setItem('lumina_theme', 'dark');
-                }
+                return {
+                    id: 200 + i + 1,
+                    name: `${adj} ${type} Pro X${i + 1}`,
+                    category: info.cat,
+                    price: parseFloat(regularPrice),
+                    image: info.img,
+                    description: `Precision-crafted ${type.toLowerCase()} built for durability and absolute performance.`
+                };
             });
+
+            const gridContainer = document.getElementById('mainProductsGrid');
+            if (gridContainer) {
+                gridContainer.innerHTML = normalProducts.map(product => `
+                    <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg hover:-translate-y-1 transition-transform duration-200">
+                        <div class="relative w-full h-48">
+                            <span class="absolute top-4 left-4 bg-neon/20 text-neon px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border border-neon/30 z-10">${product.category}</span>
+                            <img class="w-full h-full object-cover" src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="p-5 flex flex-col gap-1">
+                            <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">ID #${product.id}</span>
+                            <h3 class="text-lg font-bold text-white leading-tight">${product.name}</h3>
+                            <p class="text-gray-400 text-sm mt-1">${product.description}</p>
+                        </div>
+                        <div class="flex justify-between items-end p-5 pt-0">
+                            <div>
+                                <span class="text-2xl font-bold text-neon">$${product.price.toFixed(2)}</span>
+                            </div>
+                            <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold cursor-pointer transition-colors" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartUI();
+
+            document.addEventListener('click', function(event) {
+                const button = event.target.closest('.add-to-cart-btn');
+                if (!button) return;
+
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+
+                cart.push({ id, name, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartUI();
+            });
+
+            function updateCartUI() {
+                const totalItems = cart.length;
+                const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
+                const navCount = document.getElementById('navCartCount');
+                if (navCount) navCount.textContent = totalItems;
+
+                const cartBar = document.getElementById('cartBar');
+                const countSpan = document.getElementById('cartCount');
+                const totalSpan = document.getElementById('cartTotal');
+                
+                if (countSpan) countSpan.textContent = totalItems;
+                if (totalSpan) totalSpan.textContent = `$${totalPrice.toFixed(2)}`;
+
+                if (cartBar) {
+                    if (totalItems > 0) {
+                        cartBar.classList.remove('hidden');
+                        cartBar.classList.add('flex');
+                    } else {
+                        cartBar.classList.add('hidden');
+                        cartBar.classList.remove('flex');
+                    }
+                }
+            }
         });
     </script>
-    
-    <!-- SHARED CART LOGIC -->
-    <script src="cart.js"></script>
 </body>
 </html>

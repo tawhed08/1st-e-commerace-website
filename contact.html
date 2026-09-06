@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0b0f19',
+                        surface: '#131b2e',
+                        outline: '#1f293d',
+                        neon: '#5eead4',
+                        neonHover: '#2dd4bf',
+                        primaryBtn: '#0d9488',
+                        primaryBtnHover: '#14b8a6'
+                    },
+                    fontFamily: { sans: ['system-ui', '-apple-system', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-base text-white flex flex-col min-h-screen">
+
+    <!-- Top Navigation -->
+    <nav class="flex justify-between items-center px-6 md:px-10 py-5 bg-base border-b border-outline sticky top-0 z-50">
+        <a href="deals.html" class="text-2xl font-black text-white no-underline tracking-wide">
+            Lumina<span class="text-neon">.</span>
+        </a>
+        
+        <!-- Navigation Links with Active Contact Button -->
+        <div class="hidden md:flex gap-6 items-center">
+            <a href="shop.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Shop</a>
+            <a href="categories.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Categories</a>
+            <a href="deals.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Deals</a>
+            <a href="about.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">About</a>
+            <a href="contact.html" class="text-neon text-sm font-medium transition-colors">Contact</a>
+        </div>
+
+        <div class="flex gap-3 items-center ml-5">
+            <a href="#account" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="order.html" class="relative flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-neon text-base w-5 h-5 rounded-full text-xs font-extrabold flex items-center justify-center border-2 border-base">0</span>
+            </a>
+            <a href="#settings" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto mt-10 px-5 flex-grow mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight mb-3">Get in Touch</h1>
+            <p class="text-gray-400 text-sm md:text-base">Have questions about an order, a product, or want to collaborate? Drop us a line below or reach out directly.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Contact Details Cards -->
+            <div class="space-y-4">
+                <div class="bg-surface border border-outline rounded-2xl p-6 shadow-lg flex items-start gap-4">
+                    <div class="w-10 h-10 bg-neon/10 text-neon border border-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-base">Email Us</h3>
+                        <p class="text-gray-400 text-sm mt-1">support@lumina.io</p>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-outline rounded-2xl p-6 shadow-lg flex items-start gap-4">
+                    <div class="w-10 h-10 bg-neon/10 text-neon border border-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-base">Location</h3>
+                        <p class="text-gray-400 text-sm mt-1">123 Cyber Way, Neo City, 4040</p>
+                    </div>
+                </div>
+
+                <div class="bg-surface border border-outline rounded-2xl p-6 shadow-lg flex items-start gap-4">
+                    <div class="w-10 h-10 bg-neon/10 text-neon border border-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-base">Hours</h3>
+                        <p class="text-gray-400 text-sm mt-1">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right 2 Columns: Contact Form -->
+            <div class="lg:col-span-2">
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="bg-surface border border-outline rounded-2xl p-6 md:p-8 shadow-lg space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2 font-medium">Your Name</label>
+                            <input type="text" id="contactName" required placeholder="Alex Mercer" class="w-full bg-base border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-2 font-medium">Your Email</label>
+                            <input type="email" id="contactEmail" required placeholder="alex@example.com" class="w-full bg-base border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2 font-medium">Subject</label>
+                        <input type="text" id="contactSubject" required placeholder="Order inquiry / Feedback" class="w-full bg-base border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2 font-medium">Message</label>
+                        <textarea id="contactMessage" rows="5" required placeholder="Type your message here..." class="w-full bg-base border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primaryBtn hover:bg-primaryBtnHover text-white py-4 rounded-xl font-bold text-base transition-colors cursor-pointer shadow-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Sync cart count inside the navbar across pages using localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const navCount = document.getElementById('navCartCount');
+            if (navCount) {
+                navCount.textContent = cart.length;
+            }
+        });
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            // Collect form values if needed
+            const name = document.getElementById('contactName').value;
+            
+            // Show confirmation alert
+            alert(`Thanks for reaching out, ${name}! Your message has been sent successfully. We will get back to you soon.`);
+            
+            // Reset the form
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

@@ -1,152 +1,252 @@
 <!DOCTYPE html>
-<html lang="en" id="html-root" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories - Lumina</title>
+    <title>Lumina - Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0b0f19',
+                        surface: '#131b2e',
+                        outline: '#1f293d',
+                        neon: '#5eead4',
+                        neonHover: '#2dd4bf',
+                        primaryBtn: '#0d9488',
+                        primaryBtnHover: '#14b8a6'
+                    },
+                    fontFamily: { sans: ['system-ui', '-apple-system', 'sans-serif'] }
+                }
+            }
+        }
     </script>
-    <style>
-        .neon-text { text-shadow: 0 0 10px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4); }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-    </style>
 </head>
-<body class="flex flex-col min-h-screen bg-slate-950 text-slate-300 dark:bg-slate-950 dark:text-slate-300 bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden transition-colors duration-300">
+<body class="bg-base text-white pb-28">
 
-    <!-- HEADER -->
-    <header class="bg-slate-950/80 dark:bg-slate-950/80 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-white/10 dark:border-white/10 border-slate-200 shadow-lg transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <h1 class="text-3xl font-black tracking-tighter text-white dark:text-white text-slate-900">
-                <a href="index.html">Lumina<span class="text-teal-400 neon-text">.</span></a>
-            </h1>
+    <!-- Top Navigation -->
+    <nav class="flex justify-between items-center px-6 md:px-10 py-5 bg-base border-b border-outline sticky top-0 z-50">
+        <!-- Single Main Logo -->
+        <a href="#" class="text-2xl font-black text-white no-underline tracking-wide">
+            Lumina<span class="text-neon">.</span>
+        </a>
+        
+        <!-- Center Links -->
+        <div class="hidden md:flex gap-6 items-center">
+           
+            <a href="/index.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Shop</a>
+            <a href="/categories.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Categories</a>
+            <a href="/deals.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Deals</a>
+            <a href="/about.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">About</a>
+            <a href="/orders.html" class="text-gray-400 text-sm font-medium hover:text-neon transition-colors">Orders</a>
+        </div>
+
+        <!-- Right Icons -->
+        <div class="flex gap-3 items-center ml-5">
+            <a href="/account.html" class="flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/cart.html" class="relative flex items-center justify-center w-10 h-10 border border-outline rounded-lg text-gray-400 hover:text-neon hover:border-neon/50 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span id="navCartCount" class="absolute -top-1.5 -right-1.5 bg-neon text-base w-5 h-5 rounded-full text-xs font-extrabold flex items-center justify-center border-2 border-base">0</span>
+            </a>
+           
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto mt-10 px-5">
+        
+        <!-- Search Bar & Auto-Suggest Section -->
+        <div class="bg-surface border border-outline rounded-2xl p-6 mb-8 flex flex-col md:flex-row gap-4 items-center shadow-lg relative">
+            <svg class="text-gray-400 hidden md:block" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-400 dark:text-slate-400 text-slate-600 items-center">
-                <a href="index.html" class="hover:text-teal-400 transition">Shop</a>
-                <a href="categories.html" class="text-teal-400 font-bold">Categories</a>
-                <a href="deals.html" class="hover:text-teal-400 transition">Deals</a>
-                <a href="orders.html" class="hover:text-teal-400 transition">Orders</a>
-                <a href="about.html" class="hover:text-teal-400 transition">About</a>
-               <a href="/account.html" class="hover:text-teal-400 transition">Account</a>
-            </nav>
-
-            <div class="flex items-center space-x-3">
-                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-800/50 dark:bg-slate-800/50 bg-slate-200 text-teal-400 hover:bg-slate-800 transition-all border border-white/10 dark:border-white/10 border-slate-300">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
+            <div class="w-full relative">
+                <input type="text" id="searchInput" autocomplete="off" placeholder="Search for hardware, peripherals, and more..." class="w-full bg-base border border-outline text-white px-5 py-3 rounded-xl focus:outline-none focus:border-neon transition-colors placeholder-gray-500 text-lg relative z-20">
+                
+                <!-- Autocomplete Dropdown Menu -->
+                <ul id="searchSuggestions" class="absolute left-0 right-0 top-full mt-2 bg-surface border border-outline rounded-xl shadow-2xl max-h-64 overflow-y-auto z-30 hidden">
+                    <!-- Dynamic suggestions go here -->
+                </ul>
             </div>
         </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow w-full py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
         
-        <!-- Categories Header Banner -->
-        <div class="glass-card p-8 rounded-3xl border border-white/10">
-            <span class="bg-teal-500/10 border border-teal-500/30 text-teal-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Catalog</span>
-            <h2 class="text-3xl md:text-4xl font-black text-white dark:text-white text-slate-900 mt-2">All Categories & Products</h2>
-            <p class="text-slate-400 dark:text-slate-400 text-slate-600 mt-1">Browse our complete collection of 300 specialized tech equipment items.</p>
+        <!-- Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic products load here -->
         </div>
+    </div>
 
-        <!-- Categories Product Cards Grid (Dynamically Populated with 300 items) -->
-        <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Products will be injected here automatically by JavaScript -->
+    <!-- Sticky Bottom Cart Bar -->
+    <div id="cartBar" class="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-outline px-8 py-4 hidden justify-between items-center shadow-[0_-5px_20px_rgba(0,0,0,0.5)] z-50">
+        <div class="text-lg font-medium text-gray-100">
+            Cart Items: <span id="cartCount">0</span> | Total: <span id="cartTotal" class="text-neon font-bold">$0.00</span>
         </div>
+        <button class="bg-neon hover:bg-neonHover text-base text-base border-none py-3 px-7 rounded-lg font-bold cursor-pointer transition-colors" onclick="alert('Proceeding to checkout!')">Proceed to Checkout</button>
+    </div>
 
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 dark:bg-slate-950 bg-slate-100 border-t border-slate-800 py-6 text-center text-slate-500 text-sm mt-auto transition-colors duration-300">
-        <p>&copy; 2026 Lumina. All rights reserved.</p>
-    </footer>
-
-    <!-- SCRIPTS -->
     <script>
-        // Base category items template pool
-        const baseCategories = [
-            { cat: "Keyboards & Peripherals", title: "Neon Mechanical Keyboard", desc: "RGB backlighting with tactical hot-swappable switches.", price: "$89.99" },
-            { cat: "Gaming Hardware", title: "Apex Wireless Gaming Mouse", desc: "Ultra-low latency sensor with ergonomic glass grips.", price: "$59.99" },
-            { cat: "Workspace Gear", title: "Matrix Extra-Large Desk Mat", desc: "Water-resistant waterproof coating with anti-fray edges.", price: "$29.99" },
-            { cat: "Audio Tech", title: "Cyber Pulse Headset", desc: "Immersive surround sound with custom lighting strips.", price: "$99.99" },
-            { cat: "Accessories", title: "Glassmorphism USB-C Hub", desc: "Multiport adapter with 4K HDMI and fast power delivery.", price: "$45.99" }
-        ];
+        // 1. Map actual images and categories to product types
+        const productData = {
+            'Mechanical Keyboard': { cat: 'Keyboards & Peripherals', img: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80' },
+            'Wireless Mouse': { cat: 'Gaming Hardware', img: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80' },
+            'Studio Headset': { cat: 'Audio Gear', img: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&w=600&q=80' },
+            'Condenser Mic': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80' },
+            'Gaming Monitor': { cat: 'Displays', img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80' },
+            'Pro Webcam': { cat: 'Streaming', img: 'https://images.unsplash.com/photo-1628126235206-5260b9ea6441?auto=format&fit=crop&w=600&q=80' }
+        };
 
-        function renderCategories() {
-            const grid = document.getElementById('categories-grid');
-            if (!grid) return;
+        const adjectives = ['Neon', 'Apex', 'Cyber', 'Quantum', 'Stealth', 'Nova', 'Pulse'];
+        const types = Object.keys(productData);
 
-            let htmlContent = '';
+        // Generate 200 Dummy Products
+        const allProducts = Array.from({ length: 200 }, (_, i) => {
+            const type = types[Math.floor(Math.random() * types.length)];
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const mappedInfo = productData[type];
+            
+            return {
+                id: i + 1,
+                name: `${adj} ${type} v${(i % 5) + 1}`,
+                category: mappedInfo.cat,
+                price: (Math.random() * 150 + 20).toFixed(2),
+                image: mappedInfo.img,
+                description: `High-performance ${type.toLowerCase()} engineered for ultimate responsiveness.`
+            };
+        });
 
-            // Loop to generate exactly 300 items cleanly
-            for (let i = 0; i < 300; i++) {
-                let item = baseCategories[i % baseCategories.length];
-                let productNumber = i + 1;
+        // 2. Render Function
+        const productsGrid = document.getElementById('productsGrid');
 
-                htmlContent += `
-                    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group border border-white/10 relative">
-                        <span class="absolute top-3 left-3 bg-teal-500/20 border border-teal-500/40 text-teal-400 text-xs font-bold px-2.5 py-1 rounded-lg z-10">${item.cat}</span>
-                        <div class="relative overflow-hidden aspect-video bg-slate-900">
-                            <img src="https://picsum.photos/seed/cat${productNumber}/800/600" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
-                        </div>
-                        <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
-                            <div>
-                                <span class="text-xs text-slate-500 font-mono">ID #${productNumber}</span>
-                                <h3 class="font-bold text-white dark:text-white text-slate-900 text-lg mt-1">${item.title}</h3>
-                                <p class="text-sm text-slate-400 mt-1">${item.desc}</p>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                                <span class="text-teal-400 font-black text-xl">${item.price}</span>
-                                <button class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl transition shadow-[0_0_10px_rgba(45,212,191,0.3)]">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+        function renderProducts(productsToDisplay) {
+            if (productsToDisplay.length === 0) {
+                productsGrid.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10 text-xl">No products found matching your search.</div>`;
+                return;
             }
 
-            grid.innerHTML = htmlContent;
+            productsGrid.innerHTML = productsToDisplay.map(product => `
+                <div class="bg-surface border border-outline rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg hover:-translate-y-1 transition-transform duration-200">
+                    <div class="relative w-full h-48">
+                        <span class="absolute top-4 left-4 bg-neon/20 text-neon px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border border-neon/30 z-10">${product.category}</span>
+                        <img class="w-full h-full object-cover" src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="p-5 flex flex-col gap-1">
+                        <span class="text-gray-500 text-xs font-semibold uppercase tracking-wider">ID #${product.id}</span>
+                        <h3 class="text-lg font-bold text-white leading-tight">${product.name}</h3>
+                        <p class="text-gray-400 text-sm mt-1">${product.description}</p>
+                    </div>
+                    <div class="flex justify-between items-center p-5 pt-0">
+                        <span class="text-xl font-bold text-neon">$${product.price}</span>
+                        <button class="add-to-cart-btn bg-primaryBtn hover:bg-primaryBtnHover text-white text-sm py-2 px-4 rounded-lg font-semibold cursor-pointer transition-colors" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Theme Toggle Script & Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCategories();
+        renderProducts(allProducts);
 
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const htmlRoot = document.getElementById('html-root');
+        // 3. Search & Auto-Suggest Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
 
-            const savedTheme = localStorage.getItem('lumina_theme') || 'dark';
-            if (savedTheme === 'light') {
-                htmlRoot.classList.remove('dark');
-            } else {
-                htmlRoot.classList.add('dark');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            // Filter products for the main grid
+            const filteredProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) || 
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            renderProducts(filteredProducts);
+
+            // Handle the dropdown suggestions
+            if (searchTerm.length === 0) {
+                searchSuggestions.classList.add('hidden');
+                return;
             }
 
-            themeToggleBtn.addEventListener('click', () => {
-                if (htmlRoot.classList.contains('dark')) {
-                    htmlRoot.classList.remove('dark');
-                    localStorage.setItem('lumina_theme', 'light');
-                } else {
-                    htmlRoot.classList.add('dark');
-                    localStorage.setItem('lumina_theme', 'dark');
-                }
-            });
+            // Get up to 6 unique matching names to suggest
+            const suggestions = filteredProducts.slice(0, 6);
+
+            if (suggestions.length > 0) {
+                searchSuggestions.innerHTML = suggestions.map(product => `
+                    <li class="suggestion-item px-5 py-3 hover:bg-outline cursor-pointer border-b border-outline/50 last:border-none flex justify-between items-center transition-colors" data-name="${product.name}">
+                        <div class="flex flex-col">
+                            <span class="text-gray-200 font-semibold">${product.name}</span>
+                            <span class="text-xs text-gray-500">${product.category}</span>
+                        </div>
+                        <svg class="text-gray-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </li>
+                `).join('');
+                searchSuggestions.classList.remove('hidden');
+            } else {
+                searchSuggestions.classList.add('hidden');
+            }
         });
+
+        // Click on a suggestion to auto-fill
+        searchSuggestions.addEventListener('click', function(e) {
+            const li = e.target.closest('li.suggestion-item');
+            if (!li) return;
+            
+            const selectedName = li.getAttribute('data-name');
+            searchInput.value = selectedName;
+            searchSuggestions.classList.add('hidden');
+            
+            // Re-render grid to show only the exact match
+            const exactMatch = allProducts.filter(product => product.name === selectedName);
+            renderProducts(exactMatch);
+        });
+
+        // Hide suggestions when clicking anywhere outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.classList.add('hidden');
+            }
+        });
+
+        // 4. Cart Logic
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        updateCartUI();
+
+        document.addEventListener('click', function(event) {
+            const button = event.target.closest('.add-to-cart-btn');
+            if (!button) return;
+
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+
+            cart.push({ id, name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        });
+
+        function updateCartUI() {
+            const totalItems = cart.length;
+            const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+
+            const navCount = document.getElementById('navCartCount');
+            if (navCount) navCount.textContent = totalItems;
+
+            const cartBar = document.getElementById('cartBar');
+            const countSpan = document.getElementById('cartCount');
+            const totalSpan = document.getElementById('cartTotal');
+            
+            if (countSpan) countSpan.textContent = totalItems;
+            if (totalSpan) totalSpan.textContent = `$${totalPrice.toFixed(2)}`;
+
+            if (cartBar) {
+                if (totalItems > 0) {
+                    cartBar.classList.remove('hidden');
+                    cartBar.classList.add('flex');
+                } else {
+                    cartBar.classList.add('hidden');
+                    cartBar.classList.remove('flex');
+                }
+            }
+        }
     </script>
-    
-    <!-- SHARED CART LOGIC -->
-    <script src="cart.js"></script>
 </body>
 </html>
